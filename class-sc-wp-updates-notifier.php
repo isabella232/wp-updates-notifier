@@ -672,7 +672,7 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 			 *
 			 * @param string $message Intro message text.
 			 */
-			$message = $markup_vars['i_start'] . apply_filters( 'sc_wpun_message_text', esc_html( __( 'Updates Available', 'wp-updates-notifier' ) ) )
+			$message = $markup_vars['i_start'] . esc_html( apply_filters( 'sc_wpun_message_text', __( 'Updates Available', 'wp-updates-notifier' ) ) )
 			. $markup_vars['i_end'] . $markup_vars['line_break'] . $markup_vars['b_start']
 			. esc_html( get_bloginfo() ) . $markup_vars['b_end'] . ' - '
 			. $markup_vars['link_start'] . esc_url( home_url() ) . $markup_vars['link_middle']
