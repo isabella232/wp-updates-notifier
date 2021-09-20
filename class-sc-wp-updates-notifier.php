@@ -151,7 +151,7 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 
 				// Get the default settings from the CONST
 				$defaults = self::DEFAULT_SETTINGS;
-			
+
 				// If we are upgrading from settings before settings version 7, turn on email notifications by default.
 				if ( intval( $current_ver ) > 0 && intval( $current_ver ) < 7 ) {
 					$defaults['email_notifications'] = 1;
@@ -665,7 +665,14 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 		 * @return string Message to be sent.
 		 */
 		public function prepare_message( $updates, $markup_vars ) {
-			$message = $markup_vars['i_start'] . esc_html( __( 'Updates Available', 'wp-updates-notifier' ) )
+			/**
+			 * Filters the message text intro.
+			 *
+			 * Change the "Updates Available" message text.
+			 *
+			 * @param string $message Intro message text.
+			 */
+			$message = $markup_vars['i_start'] . apply_filters( 'sc_wpun_message_text', esc_html( __( 'Updates Available', 'wp-updates-notifier' ) ) )
 			. $markup_vars['i_end'] . $markup_vars['line_break'] . $markup_vars['b_start']
 			. esc_html( get_bloginfo() ) . $markup_vars['b_end'] . ' - '
 			. $markup_vars['link_start'] . esc_url( home_url() ) . $markup_vars['link_middle']
@@ -1287,7 +1294,7 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 
 		/**
 		 * Settings field for notify core updates.
-		 * 
+		 *
 		 * @return void
 		 */
 		public function sc_wpun_settings_main_field_notify_automatic() {
