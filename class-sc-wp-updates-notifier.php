@@ -668,8 +668,6 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 			/**
 			 * Filters the message text intro.
 			 *
-			 * Change the "Updates Available" message text.
-			 *
 			 * @param string $message Intro message text.
 			 */
 			$message = $markup_vars['i_start'] . esc_html( apply_filters( 'sc_wpun_message_text', __( 'Updates Available', 'wp-updates-notifier' ) ) )
