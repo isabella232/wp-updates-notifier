@@ -962,12 +962,12 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 			$sc_wpun_send_test_slack = get_transient( 'sc_wpun_send_test_slack' );
 			if ( $sc_wpun_send_test_slack ) {
 				delete_transient( 'sc_wpun_send_test_slack' );
-				$this->send_test_slack();
+				$this->send_test_slack( self::MARKUP_VARS_SLACK );
 			}
 			$sc_wpun_send_test_email = get_transient( 'sc_wpun_send_test_email' );
 			if ( $sc_wpun_send_test_email ) {
 				delete_transient( 'sc_wpun_send_test_email' );
-				$this->send_test_email();
+				$this->send_test_email( self::MARKUP_VARS_EMAIL );
 			}
 
 			$options     = $this->get_set_options( self::OPT_FIELD );
@@ -1219,8 +1219,18 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 		 *
 		 * @return void
 		 */
-		public function send_test_email() {
-			$this->send_email_message( __( 'This is a test message from WP Updates Notifier.', 'wp-updates-notifier' ) );
+		public function send_test_email( $markup_vars ) {
+			$reference_text = $markup_vars['line_break']
+			. $markup_vars['b_start'] . esc_html( get_bloginfo() ) . $markup_vars['b_end'] . ' - '
+			. $markup_vars['link_start'] . esc_url( home_url() ) . $markup_vars['link_middle']
+			. esc_url( home_url() ) . $markup_vars['link_end'];
+
+			$this->send_email_message(
+				sprintf(
+					__( 'This is a test message from WP Updates Notifier. %s', 'wp-updates-notifier' ),
+					$reference_text
+				)
+			);
 		}
 
 		/**
@@ -1228,8 +1238,18 @@ if ( ! class_exists( 'SC_WP_Updates_Notifier' ) ) {
 		 *
 		 * @return void
 		 */
-		public function send_test_slack() {
-			$this->send_slack_message( __( 'This is a test message from WP Updates Notifier.', 'wp-updates-notifier' ) );
+		public function send_test_slack( $markup_vars ) {
+			$reference_text = $markup_vars['line_break']
+			. $markup_vars['b_start'] . esc_html( get_bloginfo() ) . $markup_vars['b_end'] . ' - '
+			. $markup_vars['link_start'] . esc_url( home_url() ) . $markup_vars['link_middle']
+			. esc_url( home_url() ) . $markup_vars['link_end'];
+
+			$this->send_slack_message(
+				sprintf(
+					__( 'This is a test message from WP Updates Notifier. %s', 'wp-updates-notifier' ),
+					$reference_text
+				)
+			 );
 		}
 
 		/**
