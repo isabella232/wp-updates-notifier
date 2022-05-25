@@ -1,0 +1,21 @@
+{
+	"name": "alleyinteractive/wp-updates-notifier",
+	"type": "wordpress-plugin",
+	"description": "WP Updates Notifier",
+	"homepage": "https://github.com/alleyinteractive/wp-updates-notifier",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Alley",
+			"homepage": "https://alley.co/"
+		},
+		{
+			"name": "Scott Cariss",
+			"homepage": "https://scott.cariss.dev/"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/alleyinteractive/wp-updates-notifier/issues",
+		"source": "https://github.com/alleyinteractive/wp-updates-notifier"
+	}
+}
